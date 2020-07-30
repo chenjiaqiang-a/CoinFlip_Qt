@@ -2,6 +2,7 @@
 #define MAINSCENE_H
 
 #include <QMainWindow>
+#include <QPaintEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainScene; }
@@ -14,6 +15,8 @@ class MainScene : public QMainWindow
 public:
     MainScene(QWidget *parent = nullptr);
     ~MainScene();
+
+    void paintEvent(QPaintEvent *);
 
 private:
     Ui::MainScene *ui;

@@ -17,10 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    mainscene.cpp
+    mainscene.cpp \
+    startbutton.cpp
 
 HEADERS += \
-    mainscene.h
+    mainscene.h \
+    startbutton.h
 
 FORMS += \
     mainscene.ui
@@ -29,3 +31,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    res.qrc
