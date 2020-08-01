@@ -47,7 +47,25 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
         label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);  //设置居中
         label->move(25 + (i%4)*70, 130 + (i/4)*70);
         label->setAttribute(Qt::WA_TransparentForMouseEvents, true);  //鼠标事件穿透
+
+        connect(menuBtn, &MyPushButton::clicked, [=](){
+            if(pScene == nullptr)
+            {
+                this->hide();
+                pScene = new PlayScene(i+1);
+                pScene->show();
+
+                connect(pScene,&PlayScene::chooseSceneBack,[=](){
+                    this->show();
+                    delete pScene;
+                    pScene = NULL;
+                });
+            }
+        });
     }
+
+
+
 }
 
 void ChooseLevelScene::paintEvent(QPaintEvent *)
