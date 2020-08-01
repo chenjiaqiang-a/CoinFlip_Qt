@@ -20,6 +20,9 @@ public:
     void jump_down();
     void jump_up();
 
+    void mousePressEvent(QMouseEvent *);
+    void mouseReleaseEvent(QMouseEvent *);
+
 
 signals:
 

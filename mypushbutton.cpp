@@ -56,3 +56,43 @@ void MyPushButton::jump_up()
 
     animation->start();
 }
+
+//鼠标事件
+void MyPushButton::mousePressEvent(QMouseEvent *e)
+{
+    if(pressedImgPath != "") //选中路径不为空，显示选中图片
+    {
+        QPixmap pixmap;
+        bool ret = pixmap.load(pressedImgPath);
+        if(!ret)
+        {
+            qDebug() << pressedImgPath << "加载图片失败!";
+        }
+
+        this->setFixedSize( pixmap.width(), pixmap.height() );
+        this->setStyleSheet("QPushButton{border:0px;}");
+        this->setIcon(pixmap);
+        this->setIconSize(QSize(pixmap.width(),pixmap.height()));
+    }
+    //交给父类执行按下事件
+    return QPushButton::mousePressEvent(e);
+}
+void MyPushButton::mouseReleaseEvent(QMouseEvent *e)
+{
+    if(normalImgPath != "") //选中路径不为空，显示选中图片
+    {
+        QPixmap pixmap;
+        bool ret = pixmap.load(normalImgPath);
+        if(!ret)
+        {
+            qDebug() << normalImgPath << "加载图片失败!";
+        }
+        this->setFixedSize( pixmap.width(), pixmap.height() );
+        this->setStyleSheet("QPushButton{border:0px;}");
+        this->setIcon(pixmap);
+        this->setIconSize(QSize(pixmap.width(),pixmap.height()));
+    }
+    //交给父类执行 释放事件
+    return QPushButton::mouseReleaseEvent(e);
+}
+

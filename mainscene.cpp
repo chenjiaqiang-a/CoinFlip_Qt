@@ -4,6 +4,7 @@
 
 #include <QPainter>
 #include <QPixmap>
+#include <QTimer>
 
 MainScene::MainScene(QWidget *parent)
     : QMainWindow(parent)
@@ -29,9 +30,16 @@ MainScene::MainScene(QWidget *parent)
     connect(startBtn, &MyPushButton::clicked, [=](){
         startBtn->jump_down();
         startBtn->jump_up();
+
+        QTimer::singleShot(500, this, [=](){
+            this->hide();
+            chooseScene->show();
+        });
     });
 
-
+    connect(chooseScene, &ChooseLevelScene::chooseSceneBack, [=](){
+        this->show();
+    });
 }
 
 MainScene::~MainScene()

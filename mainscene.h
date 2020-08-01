@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QPaintEvent>
 
+#include "chooselevelscene.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainScene; }
 QT_END_NAMESPACE
@@ -17,6 +19,8 @@ public:
     ~MainScene();
 
     void paintEvent(QPaintEvent *);
+
+    ChooseLevelScene * chooseScene = new ChooseLevelScene;
 
 private:
     Ui::MainScene *ui;
