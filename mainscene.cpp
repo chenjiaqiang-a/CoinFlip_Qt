@@ -1,5 +1,6 @@
 #include "mainscene.h"
 #include "ui_mainscene.h"
+#include "mypushbutton.h"
 
 #include <QPainter>
 #include <QPixmap>
@@ -19,6 +20,17 @@ MainScene::MainScene(QWidget *parent)
 
     //点击退出，退出程序
     connect(ui->actionExit, &QAction::triggered, this, &QWidget::close);
+
+    //创建开始按钮
+    MyPushButton * startBtn = new MyPushButton(":/image/res/MenuSceneStartButton.png");
+    startBtn->setParent(this);
+    startBtn->move(this->width()*0.5-startBtn->width()*0.5,this->height()*0.7);
+
+    connect(startBtn, &MyPushButton::clicked, [=](){
+        startBtn->jump_down();
+        startBtn->jump_up();
+    });
+
 
 }
 
