@@ -25,6 +25,8 @@ public:
     int  posY;
     bool flag;
 
+    bool isWin = false; //胜利标志
+
 signals:
 
 };

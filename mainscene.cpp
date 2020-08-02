@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QPixmap>
 #include <QTimer>
+#include <QSound>
 
 MainScene::MainScene(QWidget *parent)
     : QMainWindow(parent)
@@ -27,17 +28,22 @@ MainScene::MainScene(QWidget *parent)
     startBtn->setParent(this);
     startBtn->move(this->width()*0.5-startBtn->width()*0.5,this->height()*0.7);
 
+    QSound * startSound = new QSound(":/sound/res/TapButtonSound.wav", this);
+
     connect(startBtn, &MyPushButton::clicked, [=](){
+        startSound->play();
         startBtn->jump_down();
         startBtn->jump_up();
 
         QTimer::singleShot(500, this, [=](){
             this->hide();
+            chooseScene->setGeometry(this->geometry());
             chooseScene->show();
         });
     });
 
     connect(chooseScene, &ChooseLevelScene::chooseSceneBack, [=](){
+        this->setGeometry(chooseScene->geometry());
         this->show();
     });
 }
